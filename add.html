@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>VSpend</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!--Linking-->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="script.js"></script>
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <h1 class="logo"><a href="index.html">VSpend</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a class="nav-link scrollto active" href="#hero">Add</a></li>
+          <li><a href="spendings.php">Spendings</a></li>
+          <li><a href="savings.php">Savings</a></li>
+          
+       
+          
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header>
+  <section class="add_form" id="add_form">
+    <div class="hero" id="hero">
+      <form action="backend.php" method="post" id="add" onsubmit="validateForm()" nonvalidate>
+        <div class="catogary">
+          <label for="catogary" ><p id="text_catogary">Choose the Category:</p><br></label> 
+          <select for="type" id="category" name="category">
+            <option value="Food" name="category">Food</option>
+            <option value="Travel" name="category">Travel</option>
+            <option value="Home Necessity" name="category">Home Neccessity</option>
+            <option value="Miscellaneous" name="category">Miscellaneous</option>
+          </select>
+        </div>
+        <div class="name">
+          <label for="name"><p id="text_name">Name of the Expenditure:</p><br></label>
+          <input type="text" id="name" placeholder="eg.Snacks" name="name">
+        </div>
+        <div class="amount">
+          <label for="amount"><p id="text_amount">Amount of the Expenditure:</p><br></label>
+          <input type="text" id="amount" name="amount">
+        </div>
+        <div class="date">
+          <label for="date"><p id="text_date">Date of Expense:</p></label>
+          <input type="date" name="date" id="date">
+        </div>
+        <div class="submit">
+          <input type="submit" value="ADD" id="submit" name="submit">
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer-distributed">
+
+    <div class="footer-right">
+
+      <a href="https://www.instagram.com/obhi_nahi/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.linkedin.com/in/abhiram-mujumdar-b8988823b/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+      <a href="https://github.com/HeyyRam"><i class="fa-brands fa-github" target="_blank"></i></a>
+      <a href="#"><i class="fa-solid fa-envelope"></i></a>
+
+    </div>
+
+    <div class="footer-left">
+
+      <p class="footer-links">
+        <a class="link-1" href="index.html">Home</a>
+
+        <a href="#">Add</a>
+
+        <a href="spendings.php">Spendings</a>
+
+        <a href="savings.php">Savings</a>
+
+      
+      </p>
+
+    </div>
+
+  </footer>
+  
+</body>
+<script>
+  $(document).ready(function() {
+    $('#myForm').submit(function(event) {
+      event.preventDefault();
+      var formData = $(this).serialize();
+      $.ajax({
+        type: 'POST',
+        url: 'submit-form.php',
+        data: formData,
+        success: function(response) {
+          console.log('Form submitted successfully!');
+        },
+        error: function() {
+          console.error('Error submitting form!');
+        }
+      });
+    });
+  });
+</script>
+
+</html>
